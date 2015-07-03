@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # demo script taken from:
 # http://www.pythoncentral.io/introduction-python-gui-development/
 
