@@ -8,7 +8,9 @@ class PasteView(View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        return render(request, 'paste.html', context)
+        return render_to_response(
+            'paste.html', context,
+            context_instance=RequestContext(request))
 
     def post(self, request, *args, **kwargs):
         context = {}
