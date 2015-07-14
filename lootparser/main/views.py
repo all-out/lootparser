@@ -15,3 +15,15 @@ class PasteView(View):
         new_paste = Paste(raw_paste=raw_paste)
         new_paste.save()
         return render(request, 'paste.html', context)
+
+
+class DisplayView(View):
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        paste_id = self.kwargs['paste_id']
+        context['paste'] = Paste.objects.get(id=paste_id)
+        return render(request, 'display.html', context)
+
+    # def post(self, request, *args, **kwargs):
+    #     pass
