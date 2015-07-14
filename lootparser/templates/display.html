@@ -1,11 +1,6 @@
-<!DOCTYPE <!DOCTYPE html>
-<html>
-    <head>
-        <title>Loot Parser</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <h1>Pasted on {{ paste.created|date:'Y/m/d H:i' }}</h1>
-        <pre>{{ paste.raw_paste }}</pre>
-    </body>
-</html>
+{% block bodyblock %}
+    <h1>Pasted on {{ paste.created|date:'Y/m/d H:i' }}</h1>
+    <pre>{{ paste.raw_paste }}</pre>
+{% endblock bodyblock %}

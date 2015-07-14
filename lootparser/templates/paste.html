@@ -1,15 +1,10 @@
-<!DOCTYPE <!DOCTYPE html>
-<html>
-    <head>
-        <title>Loot Parser</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <form action="/paste/" method="POST">
-            {% csrf_token %}
-            Paste anything from Eve here:<br>
-            <textarea name="raw_paste"></textarea><br>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
-</html>
+{% block bodyblock %}
+    <form action="/paste/" method="POST">
+        {% csrf_token %}
+        Paste anything from Eve here:<br>
+        <textarea name="raw_paste"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock bodyblock %}
