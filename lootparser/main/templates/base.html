@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loot Parser</title>
+        <script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        {% block extrajs %}
+        {% endblock extrajs %}
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+        {% block extracss %}
+        {% endblock extracss %}
+    </head>
+
+    <body>
+
+        <style>
+            body { background-color: #ffb23d }
+            /*.container { border: 1px solid green; }*/
+            /*.row { border: 1px solid red; }*/
+            /*.col-sm-6,*/
+            /*.col-sm-12 { border: 1px solid blue; }*/
+
+            /*.container_style { background-color: #CCC; }*/
+            /*.row_style {  }*/
+            /*.col_style { background-color: burlywood }*/
+        </style>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>All-Out Loot Parser</h1>
+                </div>
+            </div>
+        </div>
+
+        {% block bodyblock %}
+        {% endblock bodyblock %}
+    </body>
+</html>

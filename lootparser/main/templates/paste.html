@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block bodyblock %}
+    <div class="container">
+        <form class="form-horizontal" action="/paste/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="raw_paste">Input Box</label>
+                <textarea class="form-control" placeholder="paste stuff to evaluate here" name="raw_paste" id="raw_paste"></textarea><br>
+                <input class="btn btn-default" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+{% endblock bodyblock %}
