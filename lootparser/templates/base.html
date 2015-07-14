@@ -1,11 +1,14 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>Loot Parser</title>
+        <script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
     </head>
 
     <body>
-    	{% block bodyblock %}
-    	{% endblock bodyblock %}
+        {% block bodyblock %}
+        {% endblock bodyblock %}
     </body>
 </html>
