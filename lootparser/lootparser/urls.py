@@ -8,6 +8,6 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^paste/$', csrf_exempt(PasteView.as_view())),
+    url(r'^paste/$', PasteView.as_view()),
     url(r'^paste/(?P<paste_id>\d+)/$', csrf_exempt(DisplayView.as_view())),
 )

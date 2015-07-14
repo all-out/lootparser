@@ -6,6 +6,7 @@
 
     <body>
         <form action="/paste/" method="POST">
+            {% csrf_token %}
             Paste anything from Eve here:<br>
             <textarea name="raw_paste"></textarea><br>
             <input type="submit" value="Submit">
