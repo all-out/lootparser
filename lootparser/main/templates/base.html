@@ -49,5 +49,11 @@
 
         {% block bodyblock %}
         {% endblock bodyblock %}
+
+        {% block pastebar %}
+            {% for paste in pastebar  %}
+                <p><a href="/paste/{{ paste.id }}">Paste {{ paste.id }} <small>({{ paste.created|date:'Y/m/d H:i' }})</small></a></p>
+            {% endfor %}
+        {% endblock pastebar %}
     </body>
 </html>
