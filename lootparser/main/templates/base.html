@@ -16,6 +16,16 @@
 
         <style>
             body { background-color: #ffb23d }
+
+            header h1 {
+                font-size: 64px;
+                line-height: 64px;
+                color: #e8e8e8;
+                font-weight: 900;
+                text-transform: uppercase;
+                /*margin: 0 0 50px;*/
+            }
+
             /*.container { border: 1px solid green; }*/
             /*.row { border: 1px solid red; }*/
             /*.col-sm-6,*/
@@ -26,13 +36,16 @@
             /*.col_style { background-color: burlywood }*/
         </style>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>All-Out Loot Parser</h1>
+        <a href="/paste/">
+            <header class="container">
+                <img class="img-responsive center-block" src="{% static "images/all-out.png" %}">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 class="text-center">All-Out</h1>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </header>
+        </a>
 
         {% block bodyblock %}
         {% endblock bodyblock %}
