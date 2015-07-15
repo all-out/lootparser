@@ -4,6 +4,7 @@ from django.db import models
 
 class Paste(models.Model):
     raw_paste = models.TextField()
+    parsed = models.TextField()
     created = models.DateTimeField(editable=False)
 
     # taken from this discussion of object date stamps:

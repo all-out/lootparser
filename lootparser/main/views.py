@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.views.generic import View
 from main.models import Paste
 import evepaste
+import json
 
 
 class PasteView(View):
@@ -17,6 +18,8 @@ class PasteView(View):
         context = {}
         raw_paste = request.POST.get('raw_paste', None)
         new_paste = Paste(raw_paste=raw_paste)
+        parsed = evepaste.parse(raw_paste)
+        new_paste.parsed = json.dumps(parsed)
         new_paste.save()
         return redirect('display', paste_id=new_paste.id)
 
