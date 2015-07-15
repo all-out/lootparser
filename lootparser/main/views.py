@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.views.generic import View
 from main.models import Paste
@@ -18,9 +18,7 @@ class PasteView(View):
         raw_paste = request.POST.get('raw_paste', None)
         new_paste = Paste(raw_paste=raw_paste)
         new_paste.save()
-        return render_to_response(
-                'paste.html', context,
-                context_instance=RequestContext(request))
+        return redirect('display', paste_id=new_paste.id)
 
 
 class DisplayView(View):
