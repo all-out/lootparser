@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block bodyblock %}
-    <div class="container">
+    {# <div class="container"> #}
         <div class="row">
             <div class="col-sm-12 col_style">
-                <h1 class="text-center"><small>Pasted on {{ paste.created|date:'Y/m/d H:i' }}</small></h1>
+                <h1 class="text-center"><small>Paste {{ paste.id }} - ({{ paste.created|date:'Y/m/d H:i' }})</small></h1>
             </div>
         </div>
         <div class="row">
@@ -12,6 +12,6 @@
                 <pre>{{ paste.raw_paste }}</pre>
             </div>
         </div>
-    </div>
+    {# </div> #}
 
 {% endblock bodyblock %}
