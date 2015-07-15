@@ -30,6 +30,7 @@ class DisplayView(View):
         context = {}
         paste_id = self.kwargs['paste_id']
         context['paste'] = Paste.objects.get(id=paste_id)
+        context['parsed'] = json.loads(context['paste'].parsed)
         return render_to_response(
                 'display.html', context,
                 context_instance=RequestContext(request))
