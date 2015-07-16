@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="All-Out Corporation Loot Parsing Tool">
+        <meta name="author" content="Mussah Yacoub">
+
+        <title>All-Out Loot Parser</title>
+
+        <!-- Bootstrap core styling -->
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+
+        <!-- Block-level styling -->
+        {% block extracss %}
+            <!-- (if you see this, there is no block-level styling) -->
+        {% endblock extracss %}
+
+    </head>
+
+    <body>
+        <style>
+            body { background-color: #ffb23d }
+
+            header h1 {
+                font-size: 64px;
+                line-height: 64px;
+                color: #e8e8e8;
+                font-weight: 900;
+                text-transform: uppercase;
+                /*margin: 0 0 50px;*/
+            }
+        </style>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <header>
+                    <img class="img-responsive center-block" src="{% static "images/all-out.png" %}">
+                    <div class="col-sm-12">
+                        <h1 class="text-center">All-Out</h1>
+                    </div>
+                </header>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                    {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+                    <form method="POST" action="{% url 'django.contrib.auth.views.login' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="username" class="form-control" id="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <button class="btn btn-default pull-right" type="submit" value="login">Submit</button>
+                        <input type="hidden" name="next" value="/paste/">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- JQuery core JavaScript -->
+        <script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        
+        <!-- Block-level JavaScript -->
+        {% block extrajs %}
+            <!-- (if you see this, there is no block-level JavaScript) -->
+        {% endblock extrajs %}
+    </body>
+</html>
