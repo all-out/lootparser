@@ -1,0 +1,21 @@
+{% extends "base_public.html" %}
+
+{% load staticfiles %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="text-center">This is an example for a simple Django App with EVE Online Single Sign-On (SSO) and authenticated CREST access.</p>
+
+            <p class="text-center">It depends on <a href="http://psa.matiasaguirre.net/" target="_blank">Python Social Auth</a> to integrate EVE SSO with Django's builtin user authentication system and uses <a href="https://forums.eveonline.com/default.aspx?g=posts&t=398676" target="_blank">PyCrest</a> to interact with the CREST API.</p>
+
+            <p class="text-center">Use the Login button below to see some market data!</p>
+
+            <a href="{% url 'social:begin' backend='eveonline' %}">
+                <img class="img-responsive center-block"
+                     src="{% static 'images/EVE_SSO_Login_Buttons_Small_White.png' %}"
+                     alt="Login with EVE Online">
+            </a>
+        </div>
+    </div>
+{% endblock body %}
