@@ -24,7 +24,7 @@ class Paste(models.Model):
         return super(Paste, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return 'Paste {:07d}'.format(self.id)
+        return 'Paste {}'.format(self.id)
 
 
 class Character(models.Model):
