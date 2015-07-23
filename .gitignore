@@ -61,7 +61,7 @@ target/
 /media/
 
 # Database migrations folder
-/migrations/
+/main/migrations/
 
 # Secret application settings
 settings_secret.py
