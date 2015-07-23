@@ -49,7 +49,6 @@ coverage.xml
 *.pot
 
 # Django stuff:
-settings.py
 *.log
 
 # Sphinx documentation
@@ -57,3 +56,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Static media folder
+/media/
+
+# Database migrations folder
+/migrations/
+
+# Secret application settings
+settings_secret.py
