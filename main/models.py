@@ -14,3 +14,13 @@ class Paste(models.Model):
         if not self.id:
             self.created = datetime.datetime.utcnow()
         return super(Paste, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return 'Paste {:07d}'.format(self.id)
+
+
+class Character(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
