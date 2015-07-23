@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block bodyblock %}
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" action="/paste/" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea class="form-control" rows="10" placeholder="paste stuff to evaluate here" name="raw_paste" id="raw_paste"></textarea><br>
+                    <input class="btn btn-default" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock bodyblock %}
