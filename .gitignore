@@ -62,3 +62,6 @@ target/
 
 # Database migrations folder
 /migrations/
+
+# Secret application settings
+settings_secret.py
