@@ -3,9 +3,17 @@ from django.db import models
 
 
 class Paste(models.Model):
-    raw_paste = models.TextField()
-    parsed = models.TextField()
+    id = models.IntegerField(primary_key=True)  # shared with evepraisal
     created = models.DateTimeField(editable=False)
+    ep_link = models.URLField()
+    ep_json = models.TextField()
+    ep_kind = models.CharField(max_length=100)
+    ep_market_id = models.IntegerField()
+    ep_market_name = models.CharField(max_length=100)
+    ep_totals_buy = models.BigIntegerField()
+    ep_totals_sell = models.BigIntegerField()
+    ep_totals_volume = models.BigIntegerField()
+    character = models.ManyToManyField('main.Character', null=True)
 
     # taken from this discussion of object date stamps:
     # http://stackoverflow.com/questions/1737017/django-auto-now-and-auto-now-add/1737078#1737078
