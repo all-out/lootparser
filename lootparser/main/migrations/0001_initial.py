@@ -11,6 +11,9 @@ class Migration(SchemaMigration):
         # Adding model 'Paste'
         db.create_table(u'main_paste', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('raw_paste', self.gf('django.db.models.fields.TextField')()),
+            ('parsed', self.gf('django.db.models.fields.TextField')()),
+            ('created', self.gf('django.db.models.fields.DateTimeField')()),
         ))
         db.send_create_signal(u'main', ['Paste'])
 
@@ -23,7 +26,10 @@ class Migration(SchemaMigration):
     models = {
         u'main.paste': {
             'Meta': {'object_name': 'Paste'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            'created': ('django.db.models.fields.DateTimeField', [], {}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'parsed': ('django.db.models.fields.TextField', [], {}),
+            'raw_paste': ('django.db.models.fields.TextField', [], {})
         }
     }
 
