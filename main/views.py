@@ -1,7 +1,10 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.views.generic import View
+
 from main.models import Paste
+
+from lxml import html
 import datetime
 import json
 import re
@@ -59,6 +62,46 @@ class PasteView(View):
                 # get timestamp, convert it to datetime field and save it
                 timestamp = response_dict['created']
                 paste.created = datetime.datetime.fromtimestamp(timestamp)
+
+                # make a dictionary of only "Sleeper Components" (groupID 880)
+                blueloot = {item['typeID']: item['quantity']
+                            for item in response_dict['items']
+                            if item['groupID'] == 880}
+
+                # make a dictionary of everything else (not groupID 880)
+                salvage = {item['typeID']: item['quantity']
+                           for item in response_dict['items']
+                           if item['groupID'] != 880}
+
+                # prepare params for blue loot price request from EveCentral
+                ec_marketdata_url = 'http://api.eve-central.com/api/marketstat'
+                amarr_station_id = 30002187
+                blueloot_payload = {
+                    'usesystem': amarr_station_id,
+                    'typeid': [key for key in blueloot.keys()]
+                }
+
+                # make blue loot price request and create a document tree
+                response = requests.get(ec_marketdata_url, blueloot_payload)
+                tree = html.fromstring(response.content)
+
+                # initialize total to zero
+                blue_loot_value = 0
+
+                # for every typeid of blue loot
+                for (typeid, quantity) in blueloot.items():
+
+                    # create path, use it to get typeid's price from the tree
+                    path = '//*[@id="%d"]/buy/max/text()' % typeid
+                    price = float(tree.xpath(path)[0])
+
+                    # calculate value of the stack of this typeid
+                    typeid_value = price * quantity
+
+                    # update the total value
+                    blue_loot_value += typeid_value
+
+                print 'total blue loot value', blue_loot_value
 
                 # save the updated paste object to the database
                 paste.save()
