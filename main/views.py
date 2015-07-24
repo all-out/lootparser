@@ -3,12 +3,11 @@ from django.template import RequestContext
 from django.views.generic import View
 
 from main.models import Paste
+from functions import get_values
 
-from lxml import html
 import datetime
 import json
 import re
-import requests
 
 
 class PasteView(View):
@@ -36,7 +35,8 @@ class PasteView(View):
             paste, created = Paste.objects.get_or_create(ep_id=ep_id)
 
             # if paste has never been seen before, we have fields to populate:
-            if created:
+            if True:
+                print '\n\n DEBUGGING (PASTED IS UPDATED ON EVERY CALL)'
 
                 # populate the paste's ep_link field with the evepraisal URL
                 paste.ep_link = ep_link
@@ -63,45 +63,12 @@ class PasteView(View):
                 timestamp = response_dict['created']
                 paste.created = datetime.datetime.fromtimestamp(timestamp)
 
-                # make a dictionary of only "Sleeper Components" (groupID 880)
-                blueloot = {item['typeID']: item['quantity']
-                            for item in response_dict['items']
-                            if item['groupID'] == 880}
-
-                # make a dictionary of everything else (not groupID 880)
-                salvage = {item['typeID']: item['quantity']
-                           for item in response_dict['items']
-                           if item['groupID'] != 880}
-
-                # prepare params for blue loot price request from EveCentral
-                ec_marketdata_url = 'http://api.eve-central.com/api/marketstat'
-                amarr_station_id = 30002187
-                blueloot_payload = {
-                    'usesystem': amarr_station_id,
-                    'typeid': [key for key in blueloot.keys()]
-                }
-
-                # make blue loot price request and create a document tree
-                response = requests.get(ec_marketdata_url, blueloot_payload)
-                tree = html.fromstring(response.content)
-
-                # initialize total to zero
-                blue_loot_value = 0
-
-                # for every typeid of blue loot
-                for (typeid, quantity) in blueloot.items():
-
-                    # create path, use it to get typeid's price from the tree
-                    path = '//*[@id="%d"]/buy/max/text()' % typeid
-                    price = float(tree.xpath(path)[0])
-
-                    # calculate value of the stack of this typeid
-                    typeid_value = price * quantity
-
-                    # update the total value
-                    blue_loot_value += typeid_value
-
-                print 'total blue loot value', blue_loot_value
+                # pass the response dictionary off to get the eve-central
+                # values for blueloot and salvage (from the appropriate
+                # stations, regardless of where the evepaste was taken)
+                blueloot_value, salvage_value = get_values(response_dict)
+                paste.blueloot_value = blueloot_value
+                paste.salvage_value = salvage_value
 
                 # save the updated paste object to the database
                 paste.save()
