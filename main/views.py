@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.views.generic import View
 from main.models import Paste
 import datetime
+import json
 import re
 import requests
 
@@ -51,7 +52,11 @@ class PasteView(View):
                 paste.ep_totals_sell = response_dict['totals']['sell']
                 paste.ep_totals_volume = response_dict['totals']['volume']
 
-                # get timestamp and convert to datetime field
+                # dump the python dictionary into a json-formatted string and
+                # save the string into the ep_json field
+                paste.ep_json = json.dumps(response_dict)
+
+                # get timestamp, convert it to datetime field and save it
                 timestamp = response_dict['created']
                 paste.created = datetime.datetime.fromtimestamp(timestamp)
 
