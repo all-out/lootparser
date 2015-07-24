@@ -14,7 +14,7 @@ class Paste(models.Model):
     ep_totals_volume = models.BigIntegerField(null=True)
     character = models.ManyToManyField('main.Character')
     created = models.DateTimeField(editable=False, null=True)
-    blue_loot_value = models.FloatField(null=True)
+    blueloot_value = models.FloatField(null=True)
     salvage_value = models.FloatField(null=True)
 
     def __unicode__(self):
