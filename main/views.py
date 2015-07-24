@@ -8,6 +8,7 @@ from functions import get_values
 import datetime
 import json
 import re
+import requests
 
 
 class PasteView(View):
@@ -67,8 +68,11 @@ class PasteView(View):
                 # values for blueloot and salvage (from the appropriate
                 # stations, regardless of where the evepaste was taken)
                 blueloot_value, salvage_value = get_values(response_dict)
+
+                # populate the paste's blueloot, salvage, and total fields
                 paste.blueloot_value = blueloot_value
                 paste.salvage_value = salvage_value
+                paste.total_value = blueloot_value + salvage_value
 
                 # save the updated paste object to the database
                 paste.save()
