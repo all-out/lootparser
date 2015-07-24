@@ -11,11 +11,12 @@ class Paste(models.Model):
     ep_market_name = models.CharField(max_length=100, null=True)
     ep_totals_buy = models.FloatField(null=True)
     ep_totals_sell = models.FloatField(null=True)
-    ep_totals_volume = models.BigIntegerField(null=True)
+    ep_totals_volume = models.FloatField(null=True)
     character = models.ManyToManyField('main.Character')
     created = models.DateTimeField(editable=False, null=True)
     blueloot_value = models.FloatField(null=True)
     salvage_value = models.FloatField(null=True)
+    total_value = models.FloatField(null=True)
 
     def __unicode__(self):
         return 'Paste {}'.format(self.ep_id)
