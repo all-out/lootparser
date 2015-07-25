@@ -17,6 +17,7 @@ class Paste(models.Model):
     blueloot_value = models.FloatField(null=True)
     salvage_value = models.FloatField(null=True)
     total_value = models.FloatField(null=True)
+    title = models.CharField(max_length=255, null=True)
 
     def __unicode__(self):
         return 'Paste {}'.format(self.ep_id)
