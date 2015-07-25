@@ -12,15 +12,30 @@ class Paste(models.Model):
     ep_totals_buy = models.FloatField(null=True)
     ep_totals_sell = models.FloatField(null=True)
     ep_totals_volume = models.FloatField(null=True)
-    character = models.ManyToManyField('main.Character')
+    character = models.ManyToManyField('main.Character', blank=True)
     created = models.DateTimeField(editable=False, null=True)
     blueloot_value = models.FloatField(null=True)
     salvage_value = models.FloatField(null=True)
     total_value = models.FloatField(null=True)
-    title = models.CharField(max_length=255, null=True)
+    name = models.CharField(max_length=255, null=True)
+    op = models.ForeignKey('main.Op', null=True, blank=True)
+    tax = models.ForeignKey('main.Tax', default=1)
 
     def __unicode__(self):
-        return 'Paste {}'.format(self.ep_id)
+        if self.name is not None:
+            return self.name
+        else:
+            return 'Paste {}'.format(self.ep_id)
+
+
+class Op(models.Model):
+    name = models.CharField(max_length=255, null=True)
+
+    def __unicode__(self):
+        if self.name is not None:
+            return self.name
+        else:
+            return 'Op {}'.format(self.ep_id)
 
 
 class Character(models.Model):
@@ -28,3 +43,14 @@ class Character(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Tax(models.Model):
+    name = models.CharField(max_length=255)
+    value = models.FloatField()
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Taxes'
