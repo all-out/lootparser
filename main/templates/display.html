@@ -5,7 +5,13 @@
 {% block bodyblock %}
     <div class="row">
         <div class="col-sm-12 col_style">
-            <h1 class="text-center">{{ paste }}</h1>
+            <h1 class="text-center">Op: {{ paste.op.name }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col_style">
+            <h2 class="text-center">Paste: {{ paste.name }}</h2>
         </div>
     </div>
     
@@ -17,7 +23,7 @@
 
     <div class="row">
         <div class="col-sm-12 col_style">
-            <p class="text-center">Paste taken in {{ paste.ep_market_name }}</p>
+            <p class="text-center">Paste taken for {{ paste.ep_market_name }} on {{ paste.created|date:"d-M-y"}}</p>
         </div>
     </div>
 
@@ -35,9 +41,16 @@
 
     <div class="row">
         <div class="col-sm-12 col_style">
+            <p class="text-center">Total Value: {{ paste.total_value|floatformat:2|intcomma }} Ƶ<p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col_style">
             <p class="text-center">{{ paste.character.all|length }} participants:</p>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-12 col_style">
             <p class="text-center">
