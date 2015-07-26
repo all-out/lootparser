@@ -16,7 +16,7 @@ class PasteView(View):
     def get(self, request, *args, **kwargs):
         context = {}
         return render_to_response(
-                'paste.html', context,
+                'create_paste.html', context,
                 context_instance=RequestContext(request))
 
     def post(self, request, *args, **kwargs):
@@ -83,7 +83,7 @@ class PasteView(View):
         except AttributeError, e:
             print e
             return render_to_response(
-                    'paste.html', context,
+                    'create_paste.html', context,
                     context_instance=RequestContext(request))
 
 
