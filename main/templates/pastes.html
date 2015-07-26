@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block bodyblock %}
+
+    {% for paste in pastes %}
+
+        <p><a href="/paste/{{ paste.ep_id }}">{{ paste }}</a></p>
+
+    {% endfor %}
+
+{% endblock bodyblock %}

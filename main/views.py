@@ -87,6 +87,11 @@ class PasteView(View):
                     context_instance=RequestContext(request))
 
 
+class PasteList(ListView):
+    queryset = Paste.objects.all().order_by('-created')
+    template_name = 'pastes.html'
+    context_object_name = 'pastes'
+
 class DisplayView(View):
 
     def get(self, request, *args, **kwargs):

@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from main.views import PasteView, DisplayView
+from main.views import PasteView, PasteList, DisplayView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^paste/$', PasteView.as_view(), name='create_paste'),
     url(r'^paste/(?P<paste_id>\d+)/$', DisplayView.as_view(), name='display'),
+    url(r'^pastes/', PasteList.as_view()),
 ]
