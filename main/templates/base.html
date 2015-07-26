@@ -14,6 +14,9 @@
         <!-- Bootstrap core styling -->
         <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
 
+        <!-- Custom site-wide styling -->
+        <link rel="stylesheet" type="text/css" href="{% static "css/all-out.css" %}">
+
         <!-- Block-level styling -->
         {% block extracss %}
             <!-- (if you see this, there is no block-level styling) -->
@@ -50,7 +53,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <div class="btn-group" role="group" aria-label="operations">
-                                <input type="button" onclick="location.href='/paste/'" class="btn btn-default navbar-btn" value="Operations">
+                                <input type="button" onclick="location.href='#'" class="btn btn-default navbar-btn" value="Operations">
+                                <input type="button" onclick="location.href='#'" class="btn btn-default navbar-btn" value="+">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group" role="group" aria-label="pastes">
+                                <input type="button" onclick="location.href='/pastes/'" class="btn btn-default navbar-btn" value="Pastes">
                                 <input type="button" onclick="location.href='/paste/'" class="btn btn-default navbar-btn" value="+">
                             </div>
                         </li>
