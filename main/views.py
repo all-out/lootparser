@@ -78,7 +78,7 @@ class PasteView(View):
                 paste.save()
 
             # redirect to the paste's display page
-            return redirect('display', paste_id=paste.ep_id)
+            return redirect('paste_detail', pk=paste.ep_id)
 
         except AttributeError, e:
             print e
@@ -95,16 +95,5 @@ class PasteList(ListView):
 
 class PasteDetail(DetailView):
     model = Paste
-    template_name = 'paste.html'
+    template_name = 'display.html'
     context_object_name = 'paste'
-
-
-class DisplayView(View):
-
-    def get(self, request, *args, **kwargs):
-        context = {}
-        paste_id = self.kwargs['paste_id']
-        context['paste'] = Paste.objects.get(ep_id=paste_id)
-        return render_to_response(
-                'display.html', context,
-                context_instance=RequestContext(request))
