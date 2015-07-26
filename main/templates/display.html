@@ -1,15 +1,51 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+
 {% block bodyblock %}
     <div class="row">
         <div class="col-sm-12 col_style">
-            <h1 class="text-center"><small>{{ paste }}</small></h1>
+            <h1 class="text-center">{{ paste }}</h1>
         </div>
     </div>
     
     <div class="row">
         <div class="col-sm-12 col_style">
-            <pre>{{ paste.raw_paste }}</pre>
+            <p class="text-center"><a href="{{ paste.ep_link }}" target="_blank">{{ paste.ep_link }}</a></p>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm-12 col_style">
+            <p class="text-center">Paste taken in {{ paste.ep_market_name }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col_style">
+            <p class="text-center">Blueloot value: {{ paste.blueloot_value|floatformat:2|intcomma }} Ƶ</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col_style">
+            <p class="text-center">Salvage value: {{ paste.salvage_value|floatformat:2|intcomma }} Ƶ</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col_style">
+            <p class="text-center">{{ paste.character.all|length }} participants:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col_style">
+            <p class="text-center">
+                {% for character in paste.character.all  %}
+                    {{character}},
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+
 {% endblock bodyblock %}
