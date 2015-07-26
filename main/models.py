@@ -17,25 +17,28 @@ class Paste(models.Model):
     blueloot_value = models.FloatField(null=True)
     salvage_value = models.FloatField(null=True)
     total_value = models.FloatField(null=True)
-    name = models.CharField(max_length=255, null=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
     op = models.ForeignKey('main.Op', null=True, blank=True)
     tax = models.ForeignKey('main.Tax', default=1)
 
     def __unicode__(self):
-        if self.name is not None:
-            return self.name
+        paste_string = 'Paste: '
+        if self.name is not None and self.name != '':
+            paste_string += self.name
         else:
-            return 'Paste {}'.format(self.ep_id)
+            paste_string += str(self.ep_id)
+        return '{0} / {1}'.format(self.op, paste_string)
 
 
 class Op(models.Model):
     name = models.CharField(max_length=255, null=True)
 
     def __unicode__(self):
-        if self.name is not None:
-            return self.name
+        op_string = 'Op: '
+        if self.name is not None and self.name != '':
+            return op_string + self.name
         else:
-            return 'Op {}'.format(self.ep_id)
+            return op_string + str(self.ep_id)
 
 
 class Character(models.Model):
