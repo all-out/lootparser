@@ -95,7 +95,7 @@ class PasteList(ListView):
 
 class PasteDetail(DetailView):
     model = Paste
-    template_name = 'display.html'
+    template_name = 'paste-detail.html'
     context_object_name = 'paste'
 
 

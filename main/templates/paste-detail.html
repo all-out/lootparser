@@ -14,7 +14,7 @@
             <h2 class="text-center">Paste: {{ paste.name }}</h2>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-sm-12 col_style">
             <p class="text-center"><a href="{{ paste.ep_link }}" target="_blank">{{ paste.ep_link }}</a></p>
@@ -44,6 +44,12 @@
             <p class="text-center">Total Value: {{ paste.total_value|floatformat:2|intcomma }} Ƶ<p>
         </div>
     </div>
+
+    {# {% for participation in paste.participation.all  %}
+
+        <p>{{ participation. }}</p>
+
+    {% endfor %} #}
 
     <div class="row">
         <div class="col-sm-12 col_style">
