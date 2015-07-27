@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block bodyblock %}
+
+    {% for op in ops %}
+
+        <p><a href="/ops/{{ op.id }}">{{ op }}</a></p>
+
+    {% endfor %}
+
+{% endblock bodyblock %}

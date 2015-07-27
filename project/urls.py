@@ -17,10 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 from main.views import PasteView, PasteList, PasteDetail
+from main.views import OpList
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^paste/$', PasteView.as_view(), name='create_paste'),
     url(r'^paste/(?P<pk>\d+)/$', PasteDetail.as_view(), name='paste_detail'),
     url(r'^pastes/', PasteList.as_view(), name='paste_list'),
+    url(r'^ops/', OpList.as_view(), name='op_list'),
 ]

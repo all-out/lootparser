@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.views.generic import View, ListView, DetailView
 
-from main.models import Paste
+from main.models import Paste, Op
 from functions import get_values
 
 import datetime
@@ -97,3 +97,10 @@ class PasteDetail(DetailView):
     model = Paste
     template_name = 'display.html'
     context_object_name = 'paste'
+
+
+class OpList(ListView):
+    queryset = Op.objects.all().order_by('-paste__created')
+    print queryset
+    template_name = 'ops.html'
+    context_object_name = 'ops'
