@@ -16,7 +16,6 @@ class PasteAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Paste, PasteAdmin)
-admin.site.register(Paste)
 admin.site.register(Character)
 admin.site.register(Op)
 admin.site.register(Tax)
