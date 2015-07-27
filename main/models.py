@@ -24,21 +24,19 @@ class Paste(models.Model):
     def __unicode__(self):
         paste_string = 'Paste: '
         if self.name is not None and self.name != '':
-            paste_string += self.name
+            return self.name
         else:
-            paste_string += str(self.ep_id)
-        return '{0} / {1}'.format(self.op, paste_string)
+            return str(self.ep_id)
 
 
 class Op(models.Model):
     name = models.CharField(max_length=255, null=True)
 
     def __unicode__(self):
-        op_string = 'Op: '
         if self.name is not None and self.name != '':
-            return op_string + self.name
+            return self.name
         else:
-            return op_string + str(self.ep_id)
+            return str(self.id)
 
 
 class Character(models.Model):
