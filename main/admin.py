@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main.models import Paste, Op, Character, Tax
+from main.models import Paste, Op, Character, Tax, Participation
 
 
 class PasteAdmin(admin.ModelAdmin):
@@ -19,3 +19,4 @@ admin.site.register(Paste, PasteAdmin)
 admin.site.register(Character)
 admin.site.register(Op)
 admin.site.register(Tax)
+admin.site.register(Participation)

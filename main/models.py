@@ -29,6 +29,15 @@ class Paste(models.Model):
             return str(self.ep_id)
 
 
+class Participation(models.Model):
+    paste = models.ForeignKey('main.Paste', null=True)
+    character = models.ManyToManyField('main.Character')
+    site_count = models.IntegerField(default=1, null=True)
+
+    def __unicode__(self):
+        return str(self.id)
+
+
 class Op(models.Model):
     name = models.CharField(max_length=255, null=True)
 
