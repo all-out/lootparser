@@ -7,6 +7,7 @@ class PasteAdmin(admin.ModelAdmin):
         'ep_id',
         'created',
         'op',
+        'name',
         'blueloot_value',
         'salvage_value',
         'total_value',

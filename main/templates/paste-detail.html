@@ -45,26 +45,24 @@
         </div>
     </div>
 
-    {# {% for participation in paste.participation.all  %}
+    {% for participation in paste.participation_set.all  %}
 
-        <p>{{ participation. }}</p>
-
-    {% endfor %} #}
-
-    <div class="row">
-        <div class="col-sm-12 col_style">
-            <p class="text-center">{{ paste.character.all|length }} participants:</p>
+        <div class="row">
+            <div class="col-sm-12 col_style">
+                <h3 class="text-center">Participation {{ forloop.counter }} ({{ participation.site_count }} site{{participation.site_count|pluralize}}):</h3>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-12 col_style">
-            <p class="text-center">
-                {% for character in paste.character.all  %}
-                    {{character}},
-                {% endfor %}
-            </p>
+        <div class="row">
+            <div class="col-sm-12 col_style">
+                <p class="text-center">
+                    {{ participation.character.all|join:', ' }}
+                </p>
+            </div>
         </div>
-    </div>
+
+    {% endfor %}
+
+
 
 {% endblock bodyblock %}

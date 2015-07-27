@@ -12,7 +12,7 @@ class Paste(models.Model):
     ep_totals_buy = models.FloatField(null=True)
     ep_totals_sell = models.FloatField(null=True)
     ep_totals_volume = models.FloatField(null=True)
-    character = models.ManyToManyField('main.Character', blank=True)
+    creator = models.ForeignKey('main.Character')
     created = models.DateTimeField(editable=False, null=True)
     blueloot_value = models.FloatField(null=True)
     salvage_value = models.FloatField(null=True)
